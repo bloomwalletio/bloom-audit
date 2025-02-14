@@ -39,23 +39,23 @@ Vulnerability Details:
 
 During exploration and analysis, it has been determined that other DLLs may be susceptible to this type of attack, especially those the system attempts to load from similar pathways. This broadens the vulnerability's scope and increases its potential impact on the system.
 
-![dddddd](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/e284b633-bd89-4525-867e-ad05f116ef98)
+![image](https://github.com/user-attachments/assets/434f4e2f-e579-43da-a322-9ec1f22b70d5)
 
-![zzZZZ](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/804c3bb7-2c35-498a-86db-3dacfa20d188)
+![image](https://github.com/user-attachments/assets/8aaaddb1-6228-44ba-9149-44853669b926)
 
 **Proof of Concept:**
 
 To demonstrate the exploitation of this vulnerability, a proof of concept can be conducted by executing the calculator program (calc.exe). By manipulating the DWriteCore.dll in the mentioned path, an attacker can trick the system into loading it from that location instead of the legitimate DLL. Once loaded, the malicious DLL can execute arbitrary code, such as the calculator, thus demonstrating the successful exploitation of the vulnerability.
 
-![imaaaaaage](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/8894a8d1-2585-439e-8535-5f6dbc07f3d6)
+![image](https://github.com/user-attachments/assets/14a5f296-280f-43a6-8b26-581138049979)
 
-![dddddd](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/f2e9426f-32af-4cc9-a3ed-49e02b4bc9ab)
+![image](https://github.com/user-attachments/assets/18d014f1-f7b5-42b4-a21a-c7a26edd9d74)
 
-![imaaaaaaage](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/a10675f7-5349-49a1-894c-09c25c369dfa)
+![image](https://github.com/user-attachments/assets/d2d31bc5-55b2-4932-b628-f4699f67e308)
 
-![2024-02-22 16_54_37-192 168 0 20 - Conexión a Escritorio remoto](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/61bc2e91-4632-4900-bc45-a64d5609c6e5)
+![image](https://github.com/user-attachments/assets/31842af2-aa5b-4f76-a4bd-023cf7be98f6)
 
-![2024-02-22 16_57_06-192 168 0 20 - Conexión a Escritorio remoto](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/1297bdbb-9dd0-48be-9361-2ad32111cd08)
+![image](https://github.com/user-attachments/assets/7ed5c519-d7b2-46f6-bb30-548de7f25fc3)
 
 It is important to note that this vulnerability can be exploited by local attackers without the need for administrator privileges, which increases its criticality.
 
@@ -63,7 +63,7 @@ The user "asier" has full permissions (F), which means that he has full control 
 
 Since "asier" has full permissions (F) on the folder and its child items (CI), it has the authority to perform the following actions:
 
-![2024-02-22 16_33_11-192 168 0 20 - Conexión a Escritorio remoto](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/a505a993-9bfb-4a79-916b-5ec7ba35196a)
+![image](https://github.com/user-attachments/assets/174e6e9b-cb5e-4fc3-b5de-472f87fe93be)
 
 **Recommendations to fix**
 
@@ -366,9 +366,9 @@ The vulnerability lies in the way the bloom.exe application handles the storage 
 
 The following proof of concept extracts the PIN via command line.
 
-![2024-02-22 16_08_55-Credencial en texto claro docx - Word](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/e17cb915-c00e-4413-9e71-c00af9807f97)
+![image](https://github.com/user-attachments/assets/a94e0be5-1210-4513-b5b5-cb5bbd48438e)
 
-![image](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/bc6e9471-b51f-45cb-8158-4f1f085a4dc9)
+![image](https://github.com/user-attachments/assets/96e1cea2-f1f7-4dfe-8ac1-3ae6376cdbe8)
 
 ---
 
@@ -662,13 +662,13 @@ The application is inadvertently exposing the user's Personal Identification Num
 - Logout from profile and enter the pin.
 - Take a memory dump through Process Explorer (SysInternal).
 
-![305703515-6239d8db-14bc-4ee6-8bdd-1b7c6be80121](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/244c693b-9fad-4cad-a0dc-b86fc2f0fe39)
+![image](https://github.com/user-attachments/assets/d159e4fb-c061-4b41-9b05-85ee109f72be)
 
 - Create a full dump.
 - Use strings.exe to dump strings from the memory dump.
 - Pin can be seen from the dump.
 
-![305703552-36471215-cdc6-4cb4-8b5e-983a6701405a](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/1df30deb-ba21-4eba-8bca-2de4198fcb80)
+![image](https://github.com/user-attachments/assets/5e618873-3e02-4365-9365-fb0e53d85b33)
 
 **Recommendations to fix**
 
@@ -709,7 +709,7 @@ The primary consequence of this issue is the potential risk to data security and
 
 The feature designed to allow users to download a recovery kit template from the "Recovery Phrase" section is currently malfunctioning, resulting in the download of an empty data file. This functionality is critical for users to securely store their recovery phrase, a key component in account recovery and securing user assets. The failure of this feature to provide the necessary data compromises user preparedness in securely backing up their account recovery information.
 
-![305702916-04baeeda-7143-431a-8787-1d2f532587e2](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/aa4a966b-88c9-4495-b2e0-a7117b5fe920)
+![image](https://github.com/user-attachments/assets/eb47554b-c173-45bc-9585-ac310e401230)
 
 **Recommendations to fix**
 
@@ -790,7 +790,7 @@ The primary risk of this vulnerability is the unauthorized access to and theft o
 
 The "Enter Your Recovery Phrase" section of the application is currently susceptible to clipboard jacking attacks. Clipboard jacking, also known as clipboard hijacking, is a form of cyber attack where malicious scripts or applications monitor and potentially manipulate the contents of the clipboard. In this context, when users copy their recovery phrase from a digital note or document and paste it into the application, there's a risk that a malicious script could intercept or alter the clipboard contents. This vulnerability primarily arises due to the application not implementing defenses against such clipboard-based attacks, potentially allowing attackers to capture or change the recovery phrase without the user's knowledge.
 
-![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/5673c31f-d239-407f-a0b9-dfeb33aea3e3)
+![image](https://github.com/user-attachments/assets/7fd03334-c64b-4d73-829e-0a1b544e6047)
 
 **Recommendations to fix**
 
@@ -831,7 +831,7 @@ Sending username and password information in clear text compromises the confiden
 
 The application version 0.1.7, running on macOS version 14.1.1 with an x64 architecture, has been identified to transmit username and password credentials in clear text as part of the URL.
 
-![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/cfc1c183-4618-4f38-b20e-b1b8d836583a)
+![image](https://github.com/user-attachments/assets/9c913d95-c679-4621-a213-7dd9173bce2c)
 
 **Recommendations to fix**
 
@@ -872,7 +872,7 @@ The direct exposure of financial details compromises user privacy and can lead t
 
 The application currently displays user financial information, including account balances and transaction details, without any form of masking or concealment. This approach poses a significant privacy and security risk, as sensitive financial data is exposed to prying eyes. In environments where the user's screen may be visible to others, such as public places or workplaces, there is a heightened risk of unauthorized individuals gaining insights into a user's financial status and activities.
 
-![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/7cac6fbb-e92f-4d7b-bd5e-36e842ab72f7)
+![image](https://github.com/user-attachments/assets/9ac428c3-ea4d-4717-8e59-d0697f3e984e)
 
 **Recommendations to fix**
 
@@ -909,7 +909,7 @@ PenTest
 
 The unmasked display of the recovery phrase compromises the confidentiality and security of user accounts. It directly threatens the integrity and security of the application, undermining user trust and potentially leading to significant reputational damage. Furthermore, it exposes users to a heightened risk of being targeted by attackers, especially in public or semi-public places where shoulder surfing is more feasible.
 
-![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/43772fe0-96ad-4cfa-a973-e0f6a69a620e)
+![image](https://github.com/user-attachments/assets/9a48a496-1e4d-40b5-b465-7c861458df5d)
 
 **Description**
 
@@ -1145,7 +1145,7 @@ baseline for security practices and serves as a starting point for a remediation
 
 Current CSP Settings :
 
-![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/7ee4f3b6-2c16-4428-88aa-8e17141d2951)
+![image](https://github.com/user-attachments/assets/4b61cf80-be94-44d2-883d-2b490364e9b5)
 
 **Conclusion**
 
@@ -1207,31 +1207,31 @@ Accept-Language: es
 
 ---
 
-<img width="685" alt="image" src="https://github.com/AuditOneAuditors/marcocarola/assets/58811847/adc29a72-5e42-4950-abf8-a30f6fec120f">
+![image](https://github.com/user-attachments/assets/f69c295b-29ff-496f-8766-b34e1f792d27)
 
 ---
 
-<img width="605" alt="image4" src="https://github.com/AuditOneAuditors/marcocarola/assets/58811847/ed43bc31-717a-4c55-8aae-22464d56d8ea">
+![image](https://github.com/user-attachments/assets/e1731d1e-2bac-4663-8c5c-42112a91837e)
 
 ---
 
-<img width="960" alt="image2" src="https://github.com/AuditOneAuditors/marcocarola/assets/58811847/e199e473-6e4f-41fd-93b1-85374f289597">
+![image](https://github.com/user-attachments/assets/53c12744-7b9d-4175-ba2e-6238475341fe)
 
 ---
 
-<img width="956" alt="image3" src="https://github.com/AuditOneAuditors/marcocarola/assets/58811847/7fbb76e8-9b54-4e02-a6ec-6a3cbcdab356">
+![image](https://github.com/user-attachments/assets/7b743419-2b7e-4904-8419-2a357fb71e88)
 
 ---
 
-![image5](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/bd2449b3-86de-4b63-ae50-8562a52422a9)
+![image](https://github.com/user-attachments/assets/c434c349-88a0-4419-b776-989073d9ef7f)
 
 ---
 
-![image6](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/ad50857a-9dbc-4e57-a755-df99a434934a)
+![image](https://github.com/user-attachments/assets/2960d3aa-1dc1-45fa-85c4-3021f5cd6514)
 
 ---
 
-![2024-02-14 10_57_50-Kali-Linux-2022 2-vmware-amd64 - VMware Workstation](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/122fc434-bf3b-433d-8347-e1423f0b152d)
+![image](https://github.com/user-attachments/assets/1f487ab3-2e55-466c-aa45-77e3d8f0b9e5)
 
 ---
 
