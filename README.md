@@ -1,5 +1,7 @@
 # AuditOne Full Report
 
+An audit of Bloom was completed in March 2024 by a third party auditor, AuditOne. All important findings were resolved and any low impact findings were either resolved or acknowledged as won't fix. Comments have been added to discuss actions taken for each of the respective findings. Read on to learn more. 
+
 ## [PenTest] DLL_hijacking
 
 **URL:** [https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/issues/24](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/issues/24)  
