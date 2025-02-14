@@ -10,15 +10,19 @@
 ### Description
 
 **Severity**
+
 High
 
 **Where**
+
 Bloom.exe
 
 **Impact**
+
 Malicious code execution: The vulnerability allows a local attacker to execute malicious code remotely. During the exploit it was demonstrated how an attacker can cause the system to load a malicious DLL from a specific location, which opens the door to a variety of attacks, such as the execution of unauthorized programs.
 
 **Description**
+
 A DLL Hijacking vulnerability affecting the DWriteCore.dll library has been detected on Windows systems. The vulnerability lies in the way the operating system loads dynamic-link libraries (DLLs) when an application attempts to access specific functions. In this case, the vulnerability enables a local attacker to remotely execute malicious code by exploiting a specific path where the system tries to load the DLL.
 
 ---
@@ -38,6 +42,7 @@ During exploration and analysis, it has been determined that other DLLs may be s
 ![zzZZZ](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/804c3bb7-2c35-498a-86db-3dacfa20d188)
 
 **Proof of Concept:**
+
 To demonstrate the exploitation of this vulnerability, a proof of concept can be conducted by executing the calculator program (calc.exe). By manipulating the DWriteCore.dll in the mentioned path, an attacker can trick the system into loading it from that location instead of the legitimate DLL. Once loaded, the malicious DLL can execute arbitrary code, such as the calculator, thus demonstrating the successful exploitation of the vulnerability.
 
 ![imaaaaaage](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/8894a8d1-2585-439e-8535-5f6dbc07f3d6)
@@ -59,6 +64,7 @@ Since "asier" has full permissions (F) on the folder and its child items (CI), i
 ![2024-02-22 16_33_11-192 168 0 20 - Conexión a Escritorio remoto](https://github.com/AuditOneAuditors/marcocarola/assets/58811847/a505a993-9bfb-4a79-916b-5ec7ba35196a)
 
 **Recommendations to fix**
+
 Preventing and mitigating DLL hijacking vulnerability requires a combination of secure development practices, proper system configurations, and security awareness among end-users. Below are the recommended strategies to prevent and mitigate risks associated with DLL hijacking:
 
 - Secure Development:
@@ -189,16 +195,20 @@ Below is a list of all potentially exploitable DLLs.
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/views/dashboard/buy-sell/components/TransakAccountPanel.svelte#L15-L20
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/views/dashboard/buy-sell/components/TransakAccountPanel.svelte#L38-L39
 
 **Impact**
+
 incorrect `fiatBalance` due to missing of rounding feature.
 
 **Description**
+
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/views/dashboard/buy-sell/components/TransakAccountPanel.svelte#L12-L20
 
 ```svelte
@@ -253,20 +263,25 @@ The solution acknowledges that while the displayed fiat balance is computed usin
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 [Where the issue is found](https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/package.json#L42)
 
 **Impact**
+
 Latest fixes would be missed due to the old version.
 
 **Description**
+
 The "electron-updater": "6.1.4" is used in the packag.json would be bit old.
 
 There are already update went in the electron side. it would be better to use the latest version to get the additional fixes and feature.
 
 **Recommendations to fix**
+
 We would suggest to use the latest stable version.
 
 ---
@@ -281,19 +296,24 @@ We would suggest to use the latest stable version.
 ### Description
 
 **Severity**
+
 informational
 
 **Where**
+
 All scripts
 
 **Impact**
+
 It would be challenging to update the any further fix.
 
 **Description**
+
 All the script has crucial functionality to function the wallet. In some places, we see the comments about function working.
 Its not provided in all the places.
 
 **Recommendations to fix**
+
 We would suggest to add necessary natspec comments about the functions working.
 
 ---
@@ -308,12 +328,15 @@ We would suggest to add necessary natspec comments about the functions working.
 ### Description
 
 **Severity**
+
 Medium
 
 **Where**
+
 Bloom.exe (Windows)
 
 **Impact**
+
 By extracting the PIN, the wallet can be accessed and all movements and information stored inside can be viewed.
 
 **Description**
@@ -351,15 +374,19 @@ The following proof of concept extracts the PIN via command line.
 ### Description
 
 **Severity**
+
 Medium
 
 **Where**
+
 [Where the issue is found](https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/views/dashboard/buy-sell/components/TransakAccountPanel.svelte#L17)
 
 **Impact**
+
 Function behaves abnormally when it meet undefined case
 
 **Description**
+
 Function `updateBalances()` updates the token and fiat balance values.
 
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/views/dashboard/buy-sell/components/TransakAccountPanel.svelte#L15-L20
@@ -391,9 +418,11 @@ if the `networkBaseCoin` is undefined, return the undefined and handle further.
 ### Description
 
 **Severity**
+
 Medium
 
 **Where**
+
 [Where the issue is found](https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/lib/electron/managers/transak.manager.ts#L85-L86)
 
 **Impact**
@@ -433,6 +462,7 @@ https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e91200
 ```
 
 **Recommendations to fix**
+
 we would suggest Node's url.format method which is standard to construct the url.
 
 sample codes
@@ -478,16 +508,20 @@ console.log(urlString);
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/lib/electron/managers/transak.manager.ts#L11-L14
 
 **Impact**
+
 unexpected crash in the application while accessing the invalid path.
 other security vulnerabilities if the path is corrupted.
 
 **Description**
+
 in `TransakManager` script, first, the path is preloaded as shown below.
 https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e912004d58/packages/desktop/lib/electron/managers/transak.manager.ts#L11-L13
 
@@ -519,12 +553,15 @@ validate the `preloadPath ` . If the path is NULL or undefined, return with erro
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 Transak
 
 **Impact**
+
 Personal data, including names, email addresses, mobile numbers, dates of birth, and physical addresses, are being passed through GET URLs. This method of transmitting sensitive information is insecure because GET URLs can be easily intercepted by attackers in a Man-In-The-Middle (MITM) attack.
 
 **Description**
@@ -567,9 +604,11 @@ This is the default implementation of Transak and a full white-label solution is
 ### Description
 
 **Severity**
+
 Medium
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -577,6 +616,7 @@ PenTest
 [CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N)
 
 **Impact**
+
 The exposure of the PIN in the system's memory compromises the confidentiality and integrity of user authentication mechanisms. It poses a substantial risk of unauthorized access to user accounts, leading to potential misuse, financial loss, or breach of personal and sensitive information.
 
 **Description**
@@ -599,6 +639,7 @@ The application is inadvertently exposing the user's Personal Identification Num
 ![305703552-36471215-cdc6-4cb4-8b5e-983a6701405a](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/1df30deb-ba21-4eba-8bca-2de4198fcb80)
 
 **Recommendations to fix**
+
 Consider clearing overall sensitive variables after usage on the application.
 
 **Conclusion**
@@ -617,9 +658,11 @@ The solution recommends mitigating the risk of exposing the user’s PIN in memo
 ### Description
 
 **Severity**
+
 High
 
 **Where**
+
 Transak
 
 **CVSS**
@@ -627,14 +670,17 @@ Transak
 [CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:H](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:H)
 
 **Impact**
+
 The primary consequence of this issue is the potential risk to data security and user confidence. Without access to a functional recovery kit template, users may resort to less secure methods of storing their recovery phrases, such as unencrypted digital notes or physical copies in insecure locations.
 
 **Description**
+
 The feature designed to allow users to download a recovery kit template from the "Recovery Phrase" section is currently malfunctioning, resulting in the download of an empty data file. This functionality is critical for users to securely store their recovery phrase, a key component in account recovery and securing user assets. The failure of this feature to provide the necessary data compromises user preparedness in securely backing up their account recovery information.
 
 ![305702916-04baeeda-7143-431a-8787-1d2f532587e2](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/aa4a966b-88c9-4495-b2e0-a7117b5fe920)
 
 **Recommendations to fix**
+
 Promptly investigate and rectify the underlying cause of the empty data file issue. Ensure thorough testing is conducted to prevent similar issues from occurring in the future.
 
 ---
@@ -649,9 +695,11 @@ Promptly investigate and rectify the underlying cause of the empty data file iss
 ### Description
 
 **Severity**
+
 Informational
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -659,12 +707,15 @@ PenTest
 [CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:N)
 
 **Impact**
+
 Without the integration of Electronegativity, the application is at a higher risk of shipping with security vulnerabilities and misconfigurations that could be exploited by attackers. These vulnerabilities can lead to issues such as unauthorized access, data leakage, and other security breaches, potentially compromising user data and trust in the application. By automating the identification of these issues, developers can address vulnerabilities early, reducing the risk of exploitation and enhancing the overall security posture of the application.
 
 **Description**
+
 The current Continuous Integration/Continuous Deployment (CI/CD) pipeline lacks a dedicated mechanism for identifying misconfigurations and security anti-patterns in Electron applications. Electronegativity is a tool designed to address this gap by scanning Electron applications for common misconfigurations and security vulnerabilities. Integrating Electronegativity as a GitHub Action within the CI/CD pipeline would automate the process of scanning and identifying potential security issues early in the development process. The action is configured to produce a GitHub compatible Static Analysis Results Interchange Format (SARIF) file, which can be uploaded to the repository's 'Code scanning alerts' section for easy tracking and resolution of identified issues.
 
 **Recommendations to fix**
+
 Implement the [Electronegativity](https://github.com/doyensec/electronegativity-action) GitHub Action in the project's CI/CD pipeline. Configure the action to scan the Electron application codebase during the CI process.
 
 **Conclusion**
@@ -683,9 +734,11 @@ Electronegativity is no longer maintained.
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 [PenTest]
 
 **CVSS**
@@ -704,6 +757,7 @@ The "Enter Your Recovery Phrase" section of the application is currently suscept
 ![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/5673c31f-d239-407f-a0b9-dfeb33aea3e3)
 
 **Recommendations to fix**
+
 Implement measures to disable direct access to the clipboard for the recovery phrase entry section. Encourage manual entry of the recovery phrase to avoid clipboard-based vulnerabilities.
 
 **Conclusion**
@@ -722,9 +776,11 @@ After careful consideration, we acknowledge that the clipboard jacking vulnerabi
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 [PenTest]
 
 **CVSS**
@@ -732,14 +788,17 @@ Low
 [CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N)
 
 **Impact**
+
 Sending username and password information in clear text compromises the confidentiality of user credentials, making them vulnerable to interception by malicious actors.
 
 **Description**
+
 The application version 0.1.7, running on macOS version 14.1.1 with an x64 architecture, has been identified to transmit username and password credentials in clear text as part of the URL.
 
 ![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/cfc1c183-4618-4f38-b20e-b1b8d836583a)
 
 **Recommendations to fix**
+
 Transmit authentication tokens or credentials in HTTP headers instead of the URL to enhance security and prevent logging of sensitive information in server logs or browser history.
 
 ---
@@ -754,9 +813,11 @@ Transmit authentication tokens or credentials in HTTP headers instead of the URL
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -793,9 +854,11 @@ After careful evaluation, we acknowledge that the unmasked display of user finan
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -888,9 +951,11 @@ app.on('web-contents-created', (event, contents) => {
 ### Description
 
 **Severity**
+
 Medium
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -898,6 +963,7 @@ PenTest
 [CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:N)
 
 **Impact**
+
 Users may end up running random unverified and unofficial binaries that would compromise the wallet
 and result in the loss of funds.
 
@@ -926,9 +992,11 @@ We recommend using electronforge or electron-builder. Electron-builder is alread
 ### Description
 
 **Severity**
+
 Low
 
 **Where**
+
 PenTest
 
 **CVSS**
@@ -978,6 +1046,7 @@ windows.main = new BrowserWindow({
 ```
 
 **Recommendations to fix**
+
 We recommend enabling sandbox for remote content and using message passing to facilitate any
 necessary calls to sensitive APIs outside of the sandbox environment.
 
@@ -997,6 +1066,7 @@ In conclusion, we acknowledge the security concern regarding the disabled sandbo
 ### Description
 
 **Severity**
+
 Medium
 
 **CVSS 3.1**
@@ -1004,6 +1074,7 @@ Medium
 [CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N)
 
 **Where**
+
 PenTest
 
 **Impact**
@@ -1013,6 +1084,7 @@ content to restrict and control the resources Electron is able to load for a giv
 any HTML document that is loaded by Electron.
 
 **Description**
+
 Without a CSP in place, requests to arbitrary and untrusted resources will not raise or prevent any errors,
 which could be exploited to facilitate data exfiltration. Depending on the precondition, the absence of a
 CSP provides an attacker with additional leverage over any foothold they have.
@@ -1038,15 +1110,23 @@ Current CSP Settings :
 
 ### Description
 
-**Severity:** Critical
+**Severity**
 
-**Where:** Found in https://api-prod.tideprotocol.xyz/public/project/1506/leaderboard?cids=*
+Critical
 
-**Impact:** If exploited, an attacker can gain unauthorized access to sensitive data stored in the PostgreSQL database, compromise user accounts, and potentially execute arbitrary commands on the database server.
+**Where**
+
+Found in https://api-prod.tideprotocol.xyz/public/project/1506/leaderboard?cids=*
+
+**Impact**
+
+If exploited, an attacker can gain unauthorized access to sensitive data stored in the PostgreSQL database, compromise user accounts, and potentially execute arbitrary commands on the database server.
 
 ---
 
-**Description:** The application is vulnerable to blind SQL injection attacks in the PostgreSQL database. This vulnerability arises due to insufficient input validation and improper sanitization of user-supplied input in SQL queries. Attackers can exploit this vulnerability to manipulate SQL queries and retrieve sensitive information from the database.
+**Description**
+
+The application is vulnerable to blind SQL injection attacks in the PostgreSQL database. This vulnerability arises due to insufficient input validation and improper sanitization of user-supplied input in SQL queries. Attackers can exploit this vulnerability to manipulate SQL queries and retrieve sensitive information from the database.
 
 A SQL injection vulnerability based on time has been detected on a server that has direct communication with the Bloom Wallet. This implies that if access to this server is gained, certain responses could be poisoned to execute malicious code on the user's side. Below are the obtained evidences, starting with the detection (Respecting the 5 and 10 seconds of sleep).
 
@@ -1054,7 +1134,7 @@ Moving on to the exfiltration of databases, current username, and banner.
 
 Because it is a very slow exploitation, attempts to gain access to the server have not been made. However, it is recommended to patch this vulnerability as soon as possible.
 
-**Vulnerable Req:**
+**Vulnerable Req**
 
 ```plaintext
 └─# cat req.txt
@@ -1110,6 +1190,8 @@ Accept-Language: es
 3. Educate developers about secure coding practices to avoid introducing vulnerabilities during development.
 4. Implement least privilege access controls to restrict database privileges and mitigate the impact of successful attacks.
 
-**Additional context:** This vulnerability was discovered during a security assessment conducted by the AuditOne team. Immediate action is recommended to address this issue and prevent potential security breaches.
+**Additional context**
+
+This vulnerability was discovered during a security assessment conducted by the AuditOne team. Immediate action is recommended to address this issue and prevent potential security breaches.
 
 ---
