@@ -183,6 +183,12 @@ Below is a list of all potentially exploitable DLLs.
 - C:\Program Files\Bloom\SSPICLI.DLL
 - C:\Program Files\Bloom\CRYPTBASE.DLL
 
+**Conclusion**
+
+A configuration for signing the DLLs has been added to the application build step, although it does not solve the issue directly it follows secure development practices.
+As we use Electron as a framework for building the application we also inherit possible vulnerabilities that could be on Chrome as Electron is Chromium-based, and particularly with this issue of DLL hijacking, Chromium security team posted why it is not part of their threat model so it also makes sense for us to follow the same.
+[Why aren‘t physically-local attacks in Chrome’s threat model?](https://chromium.googlesource.com/chromium/src.git/+/master/docs/security/faq.md#why-arent-physically_local-attacks-in-chromes-threat-model)
+
 ---
 
 ## Potential differences between the `tokenBalance` and `fiatBalance`
@@ -249,7 +255,7 @@ The function `formatCurrency` is not used the conmputed tokenBalance to derive t
 
 **Conclusion**
 
-The solution acknowledges that while the displayed fiat balance is computed using the raw token amount instead of the rounded value (which is only used for display), this inconsistency does not affect actual transaction processing since the raw token amount is always used as the source of truth. A recommended improvement would be to convert the rounded token balance back to a numerical form for fiat conversion to ensure display consistency. However, because the raw values govern transaction logic, the issue is deemed low severity, impacting only user display and not fund control.
+While the displayed fiat balance is computed using the raw token amount instead of the rounded value (which is only used for display), this inconsistency does not affect actual transaction processing since the raw token amount is always used as the source of truth. A recommended improvement would be to convert the rounded token balance back to a numerical form for fiat conversion to ensure display consistency. However, because the raw values govern transaction logic, the issue is deemed low severity, impacting only user display and not fund control.
 
 ---
 
@@ -284,6 +290,10 @@ There are already update went in the electron side. it would be better to use th
 
 We would suggest to use the latest stable version.
 
+**Conclusion**
+
+electron-updater was updated to 6.3.4
+
 ---
 
 ## Required comments about function behavior is missing.
@@ -291,7 +301,7 @@ We would suggest to use the latest stable version.
 **URL:** [https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/issues/3](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/issues/3)  
 **Author:** [aktech297](https://github.com/aktech297)  
 **Assignee:** [MarkNerdi](https://github.com/MarkNerdi)  
-**Status:** Acknowledged
+**Status:** Partially resolved
 
 ### Description
 
@@ -315,6 +325,10 @@ Its not provided in all the places.
 **Recommendations to fix**
 
 We would suggest to add necessary natspec comments about the functions working.
+
+**Conclusion**
+
+We added more comments.
 
 ---
 
@@ -362,6 +376,10 @@ The following proof of concept extracts the PIN via command line.
 - Secure Encryption: It is recommended to use robust encryption algorithms and secure storage practices to protect sensitive information such as the wallet access PIN.
 - Security Auditing: Conduct regular security audits to identify and remediate potential vulnerabilities in the application and its handling of sensitive data.
 
+**Conclusion**
+
+We added hashing functionality to the PIN code.
+
 ---
 
 ## TransakAccountPanel.svelte : undefined case is not handled correctly
@@ -405,6 +423,10 @@ https://github.com/bloomwalletio/bloom/blob/0a8c26f7df74686ae56ecad3762689e91200
 Check the output from the line `const networkBaseCoin: ITokenWithBalance = tokens?.baseCoin`
 
 if the `networkBaseCoin` is undefined, return the undefined and handle further.
+
+**Conclusion**
+
+Not a security issue but could crash the application. The fix was done by setting empty string as initial value for tokenBalance and fiatBalance and adding an early return if networkBaseCoin is a falsy value.
 
 ---
 
@@ -496,6 +518,10 @@ const urlString = url.format(urlObject);
 console.log(urlString);
 ```
 
+**Conclusion**
+
+We fixed by using the web native URL API. [URL -  Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+
 ---
 
 ## transak.manager.ts : Check valid pre-load path
@@ -540,6 +566,10 @@ it could happen if the application did not get any permission or bug in the perm
 **Recommendations to fix**
 
 validate the `preloadPath ` . If the path is NULL or undefined, return with error and handle it in the front end.
+
+**Conclusion**
+
+We added validations to preload file existence, file extension and event-based error handling in the front-end.
 
 ---
 
@@ -644,7 +674,7 @@ Consider clearing overall sensitive variables after usage on the application.
 
 **Conclusion**
 
-The solution recommends mitigating the risk of exposing the user’s PIN in memory by nullifying sensitive variables after use, thereby reducing the window in which clear-text PINs are retained. While this approach may not guarantee that the garbage collector immediately frees the memory, it is considered a reasonable improvement given the current threat model. Additionally, an alternative approach of transmitting only a hashed PIN across the electron bridge—while not prioritized—could further enhance security by reducing reliance on clear-text handling. Overall, the PIN disclosure issue is acknowledged but is deemed an acceptable risk within the defined security framework.
+The solution recommends mitigating the risk of exposing the user’s PIN in memory by nullifying sensitive variables after use, thereby reducing the window in which clear-text PINs are retained. While this approach may not guarantee that the garbage collector immediately frees the memory, it is considered a reasonable improvement given the current threat model. Additionally, an alternative approach of transmitting only a hashed PIN across the electron bridge—while has already been implemented. Overall, the PIN disclosure issue is acknowledged but is deemed an acceptable risk within the defined security framework.
 
 ---
 
@@ -682,6 +712,10 @@ The feature designed to allow users to download a recovery kit template from the
 **Recommendations to fix**
 
 Promptly investigate and rectify the underlying cause of the empty data file issue. Ensure thorough testing is conducted to prevent similar issues from occurring in the future.
+
+**Conclusion**
+
+The recovery kit template is a page to be printed and the data is to be manually filled by the user, using a pen or pencil.
 
 ---
 
@@ -800,6 +834,10 @@ The application version 0.1.7, running on macOS version 14.1.1 with an x64 archi
 **Recommendations to fix**
 
 Transmit authentication tokens or credentials in HTTP headers instead of the URL to enhance security and prevent logging of sensitive information in server logs or browser history.
+
+**Conclusion**
+
+The username and password are transmitted as Basic Auth header and thus are being encrypted because it is using HTTPS.
 
 ---
 
@@ -939,6 +977,10 @@ app.on('web-contents-created', (event, contents) => {
 
 ```
 
+**Conclusion**
+
+The app has need for navigation on fiat on-ramp flow because of third-party payment providers. To solve the issue we added a popup for the user to allow or not the opening of external URL.
+
 ---
 
 ## [PenTest] Application Lacks Automatic Update and Verification
@@ -979,6 +1021,10 @@ The Bloom App GitHub release page provides manual steps to download and verify t
 **Recommendations to fix**
 
 We recommend using electronforge or electron-builder. Electron-builder is already being used in the project for building. In addition, the electron-builder project provides ways to [auto-update](https://www.electron.build/auto-update) and do [code-signing](https://www.electron.build/code-signing).
+
+**Conclusion**
+
+This issue is invalid because is not present on the real (production) application.
 
 ---
 
@@ -1099,6 +1145,10 @@ Current CSP Settings :
 
 ![image](https://github.com/AuditOneAuditReviews/bloom_sc_audit_review/assets/79885588/7ee4f3b6-2c16-4428-88aa-8e17141d2951)
 
+**Conclusion**
+
+We added a comprehensive set of content security policy rules on all HTML files.
+
 ---
 
 ## [PenTest] Postgre_Blind_SQLI at projects
@@ -1193,5 +1243,11 @@ Accept-Language: es
 **Additional context**
 
 This vulnerability was discovered during a security assessment conducted by the AuditOne team. Immediate action is recommended to address this issue and prevent potential security breaches.
+
+**Conclusion**
+
+The issue was on third-party API provider (Tide) and they addressed it, this is the comment of Riccardo Galbusera, one of their team members:
+
+> Hi, I'm Riccardo from Tide team. We addressed this issue in our last release a couple of days ago and now all the involved endpoints have the parameters correctly validated to avoid SQL injections.
 
 ---
